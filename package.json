@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "Simple API to render D2 diagrams to PNG",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "@terrastruct/d2": "^0.1.23"
   }
 }
