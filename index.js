@@ -34,7 +34,7 @@ app.post('/generate-diagram', async (req, res) => {
           .png()
           .toBuffer();
         
-        console.log(`✅ PNG generated successfully: ${pngBuffer.length} bytes`);
+        console.log('PNG generated successfully:', pngBuffer.length, 'bytes');
         
         res.set('Content-Type', 'image/png');
         res.send(pngBuffer);
@@ -63,6 +63,4 @@ app.post('/generate-diagram', async (req, res) => {
 
 app.get('/healthz', (req, res) => res.send('OK'));
 
-app.listen(port, () => {
-  console.log(`D2 Render API listening at http://localhost:${port}`);
-});
+app.listen(port, () =>
