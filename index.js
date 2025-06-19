@@ -10,23 +10,19 @@ app.use(express.json());
 
 app.post('/generate-diagram', async (req, res) => {
   try {
-    const d2Code = req.body.d2Code;
-    if (!d2Code) {
-      return res.status(400).json({ error: 'Missing d2Code in request body' });
-    }
+    const { d2Code, layout, theme, sketch } = req.body;
+    
+    const options = {};
+    if (layout) options.layout = layout;
+    if (theme) options.themeID = parseInt(theme);
+    if (sketch) options.sketch = sketch;
 
     const d2 = new D2();
-    const result = await d2.compile(d2Code);
+    const result = await d2.compile(d2Code, options);
     const svg = await d2.render(result.diagram, result.renderOptions);
     
-    // Convert SVG string to binary buffer (like the old PNG approach)
-    const svgBuffer = Buffer.from(svg, 'utf8');
-    
-    // Send as binary data (like the old res.sendFile did)
     res.set('Content-Type', 'image/svg+xml');
-    res.set('Content-Length', svgBuffer.length);
-    res.end(svgBuffer); // This sends binary data instead of text
-    
+    res.send(svg);
   } catch (err) {
     console.error('Server error:', err);
     res.status(500).json({ error: 'Internal server error' });
