@@ -1,3 +1,4 @@
+import express from 'express';
 import cors from 'cors';
 import { D2 } from '@terrastruct/d2';
 const app = express();
