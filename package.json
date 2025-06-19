@@ -1,5 +1,5 @@
 {
-  "name": "d2-render-api",
+  "name": "d2-render-api", 
   "version": "1.0.0",
   "description": "Simple API to render D2 diagrams to PNG",
   "main": "index.js",
